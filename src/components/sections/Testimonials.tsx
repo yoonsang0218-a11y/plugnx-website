@@ -45,7 +45,7 @@ function LogoRow({
       <div className="mt-5 grid grid-cols-3 gap-3 sm:gap-5">
         {entries.map((e) => (
           <div key={e.brand} className="flex w-full flex-col gap-3">
-            <BrandLogo brand={e.brand} aspectRatio="3/1" />
+            <BrandLogo brand={e.brand} size="lg" />
             <span className="text-center text-sm font-semibold text-slate-600 sm:text-base">
               {e.name}
             </span>

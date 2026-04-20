@@ -357,7 +357,7 @@ export default function About() {
                   <div className="mt-5 grid grid-cols-3 gap-3">
                     {PARTNER_BRANDS.map((b) => (
                       <div key={b.brand} className="flex w-full flex-col gap-2">
-                        <BrandLogo brand={b.brand} aspectRatio="3/1" />
+                        <BrandLogo brand={b.brand} size="md" />
                         <span className="text-center text-xs font-semibold text-slate-600 sm:text-sm">
                           {b.name}
                         </span>
@@ -372,7 +372,7 @@ export default function About() {
                   <div className="mt-5 grid grid-cols-3 gap-3">
                     {CLIENT_BRANDS.map((b) => (
                       <div key={b.brand} className="flex w-full flex-col gap-2">
-                        <BrandLogo brand={b.brand} aspectRatio="3/1" />
+                        <BrandLogo brand={b.brand} size="md" />
                         <span className="text-center text-xs font-semibold text-slate-600 sm:text-sm">
                           {b.name}
                         </span>

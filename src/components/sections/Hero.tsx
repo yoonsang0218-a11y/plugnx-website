@@ -96,7 +96,7 @@ export default function Hero() {
               <BrandLogo
                 key={t.brand}
                 brand={t.brand}
-                aspectRatio="5/2"
+                size="md"
                 className="transition hover:scale-[1.03]"
               />
             ))}

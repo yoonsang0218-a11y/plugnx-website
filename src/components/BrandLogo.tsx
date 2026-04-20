@@ -54,51 +54,57 @@ const BRANDS: Record<BrandKey, BrandSpec> = {
   },
 };
 
+/** Pre-defined tile sizes so every row in the site uses identical dimensions. */
+export type BrandSize = "sm" | "md" | "lg";
+
+const SIZE_CLASS: Record<BrandSize, string> = {
+  // Compact — used for small inline badges (e.g. Portfolio cards).
+  sm: "h-10 sm:h-12",
+  // Medium — used for Hero "Trusted by" strip.
+  md: "h-16 sm:h-20",
+  // Large — used for Testimonials / About partner & client rows.
+  lg: "h-24 sm:h-28 md:h-32",
+};
+
 type Props = {
   brand: BrandKey;
-  /** Tile aspect ratio, e.g. "3/1" or "5/2". Default "3/1". */
-  aspectRatio?: string;
+  size?: BrandSize;
   className?: string;
 };
 
 /**
- * Brand logo displayed inside a fixed-aspect white tile.
- * The tile always fills 100% of its parent's width, so placing multiple
- * BrandLogos into an equal-column grid guarantees identical tile sizes.
+ * Brand logo rendered inside a fixed-height white tile.
+ *
+ * Height is pinned by a pre-defined `size` class, and width fills the
+ * parent column via `w-full`. Every BrandLogo with the same `size` prop
+ * renders to the exact same rectangle regardless of the enclosed logo's
+ * natural proportions.
  */
 export default function BrandLogo({
   brand,
-  aspectRatio = "3/1",
+  size = "lg",
   className = "",
 }: Props) {
   const spec = BRANDS[brand];
 
   return (
     <div
-      className={`block rounded-xl bg-white shadow-sm ring-1 ring-slate-200/70 ${className}`}
-      style={{
-        width: "100%",
-        aspectRatio,
-      }}
+      className={`flex w-full items-center justify-center overflow-hidden rounded-xl bg-white shadow-sm ring-1 ring-slate-200/70 ${SIZE_CLASS[size]} ${className}`}
       aria-label={spec.label}
       role="img"
     >
-      <div
-        className="flex h-full w-full items-center justify-center overflow-hidden"
-      >
-        <img
-          src={spec.src}
-          alt=""
-          aria-hidden
-          style={{
-            maxHeight: `${(spec.scaleH ?? 0.55) * 100}%`,
-            maxWidth: `${(spec.scaleW ?? 0.75) * 100}%`,
-            width: "auto",
-            height: "auto",
-            objectFit: "contain",
-          }}
-        />
-      </div>
+      <img
+        src={spec.src}
+        alt=""
+        aria-hidden
+        style={{
+          maxHeight: `${(spec.scaleH ?? 0.55) * 100}%`,
+          maxWidth: `${(spec.scaleW ?? 0.75) * 100}%`,
+          width: "auto",
+          height: "auto",
+          objectFit: "contain",
+        }}
+      />
     </div>
   );
 }

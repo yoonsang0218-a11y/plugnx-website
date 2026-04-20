@@ -172,11 +172,8 @@ export default function Portfolio() {
                     <div className="min-w-0">
                       <div className="flex items-center gap-2 text-sm opacity-90">
                         {p.brand && (
-                          <span className="inline-flex w-16 shrink-0 sm:w-20">
-                            <BrandLogo
-                              brand={p.brand}
-                              aspectRatio="3/1"
-                            />
+                          <span className="inline-flex w-20 shrink-0 sm:w-24">
+                            <BrandLogo brand={p.brand} size="sm" />
                           </span>
                         )}
                         <span className="truncate">{p.client}</span>
